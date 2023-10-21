@@ -203,10 +203,11 @@ ubuntu_setenv:
 
 # for github codespaces ubuntu with zsh SHELL, need root for sudo
 codespaces_setenv:	
+	cd ${HOME} && sudo rm -rf riscv64-unknown-elf-gcc
 	cd ${HOME} && sudo wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
 	cd ${HOME} && sudo tar xzf riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
 	cd ${HOME} && sudo mv riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14 riscv64-unknown-elf-gcc
-	cd ${HOME} && sudo wget -O riscv64-linux-musl-cross.tgz https://cloud.tsinghua.edu.cn/f/b07bac9bcfa14f1dae66/?dl=1
+	cd ${HOME} && sudo wget -O riscv64-linux-musl-cross.tgz https://musl.cc/riscv64-linux-musl-cross.tgz
 	cd ${HOME} && sudo tar xzf riscv64-linux-musl-cross.tgz
 	#sudo echo export PATH=\"\$$HOME/riscv64-unknown-elf-gcc/bin:\$$PATH\" >>  ~/.bashrc
 	#sudo echo export PATH=\"\$$HOME/riscv64-linux-musl-cross/bin:\$$PATH\" >> ~/.bashrc
