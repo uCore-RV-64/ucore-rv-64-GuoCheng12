@@ -19,7 +19,7 @@ jobs:
           sudo wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
           sudo tar xzf riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
           sudo mv riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14 riscv64-unknown-elf-gcc
-          sudo wget -O riscv64-linux-musl-cross.tgz https://cloud.tsinghua.edu.cn/f/b07bac9bcfa14f1dae66/?dl=1
+          sudo wget -O riscv64-linux-musl-cross.tgz https://musl.cc/riscv64-linux-musl-cross.tgz
           sudo tar xzf riscv64-linux-musl-cross.tgz
       - name: Config Riscv Path   
         run: |
