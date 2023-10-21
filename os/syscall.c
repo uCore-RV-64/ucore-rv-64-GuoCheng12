@@ -4,6 +4,8 @@
 #include "syscall_ids.h"
 #include "timer.h"
 #include "trap.h"
+#include "string.h"
+#include "proc.h"
 
 uint64 sys_write(int fd, char *str, uint len)
 {
@@ -48,7 +50,7 @@ int sys_task_info(TaskInfo *ti) {
 
     ti->status = curproc->status;
     memcpy(ti->syscall_times, curproc->syscall_times, sizeof(curproc->syscall_times));
-    ti->time = curproc->time;
+    ti->time = curproc->total_runtime;
 
     return 0; 
 }
