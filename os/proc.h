@@ -2,7 +2,7 @@
 #define PROC_H
 
 #include "types.h"
-
+#define MAX_SYSCALL_NUM 256
 #define NPROC (16)
 
 // Saved registers for kernel context switches.
@@ -38,11 +38,26 @@ struct proc {
 	/*
 	* LAB1: you may need to add some new fields here
 	*/
+	enum TaskStatus status; // task status 
+	unsigned int syscall_times[MAX_SYSCALL_NUM]; 
+    int total_runtime; 
 };
 
 /*
 * LAB1: you may need to define struct for TaskInfo here
 */
+typedef enum {
+    UNUSED,
+    USED,
+    RUNNABLE,
+    RUNNING
+} TaskStatus;
+
+typedef struct TaskInfo {
+    TaskStatus status;
+    unsigned int syscall_times[MAX_SYSCALL_NUM];
+    int time; 
+} TaskInfo;
 
 struct proc *curr_proc();
 void exit(int);
