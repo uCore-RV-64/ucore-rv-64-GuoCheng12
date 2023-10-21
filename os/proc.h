@@ -2,7 +2,7 @@
 #define PROC_H
 
 #include "types.h"
-#define MAX_SYSCALL_NUM 256
+#define MAX_SYSCALL_NUM 500
 #define NPROC (16)
 
 
