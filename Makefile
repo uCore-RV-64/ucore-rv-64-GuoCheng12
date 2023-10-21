@@ -88,6 +88,11 @@ setclassroom1:
 
 setclassroom2:
 	git checkout ch2
+	if [ -d "cr-scripts" ]; then \
+        cd cr-scripts && git pull && cd ..; \
+    else \
+        git clone https://github.com/uCore-RV-64/uCore-RV-64-conf.git cr-scripts; \
+    fi
 	git clone https://github.com/uCore-RV-64/uCore-RV-64-conf.git cr-scripts
 	mkdir -p .github/workflows
 	mkdir -p .github/classroom
