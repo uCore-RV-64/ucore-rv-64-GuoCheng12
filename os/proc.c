@@ -3,7 +3,7 @@
 #include "loader.h"
 #include "trap.h"
 #include "vm.h"
-
+#include "timer.h"
 struct proc pool[NPROC];
 __attribute__((aligned(16))) char kstack[NPROC][PAGE_SIZE];
 __attribute__((aligned(4096))) char trapframe[NPROC][TRAP_PAGE_SIZE];
@@ -29,6 +29,7 @@ void proc_init(void)
 	for (p = pool; p < &pool[NPROC]; p++) {
 		p->state = UNUSED;
 		p->kstack = (uint64)kstack[p - pool];
+		//p->ustack = (uint64)ustack[p - pool];
 		p->trapframe = (struct trapframe *)trapframe[p - pool];
 		/*
 		* LAB1: you may need to initialize your new fields of proc here
@@ -69,6 +70,8 @@ found:
 	memset((void *)p->trapframe, 0, TRAP_PAGE_SIZE);
 	p->context.ra = (uint64)usertrapret;
 	p->context.sp = p->kstack + KSTACK_SIZE;
+	p->total_runtime = get_cycle();
+	memset(p->syscall_times, 0, sizeof(p->syscall_times));
 	return p;
 }
 
