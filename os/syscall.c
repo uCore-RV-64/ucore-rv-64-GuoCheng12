@@ -42,21 +42,21 @@ uint64 sys_gettimeofday(TimeVal *val, int _tz)
 * LAB1: you may need to define sys_task_info here
 */
 
-int sys_task_info(TaskInfo *ti) {
-    if(!ti) {
-        return -1; 
-    }
-    struct proc *curproc = curr_proc(); 
-
-    ti->status = curproc->status;
-    memcpy(ti->syscall_times, curproc->syscall_times, sizeof(curproc->syscall_times));
-    ti->time = curproc->total_runtime;
-
-    return 0; 
+uint64 sys_task_info(TaskInfo *ti)
+{
+	struct proc *proc_ptr = curr_proc();
+	ti->status = TASK_RUNNING;
+	// mistake
+	memmove(ti->syscall_times, proc_ptr->syscall_times,
+		sizeof(ti->syscall_times));
+	uint64 diff = get_cycle() - proc_ptr->total_runtime;
+	ti->time = (int)(diff / (CPU_FREQ / 1000));
+	return 0;
 }
 
 extern char trap_page[];
 
+// need to modify the syscall order to make sure taskinfo make work
 void syscall()
 {
 	struct trapframe *trapframe = curr_proc()->trapframe;

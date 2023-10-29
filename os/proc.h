@@ -4,7 +4,7 @@
 #include "types.h"
 #define MAX_SYSCALL_NUM 500
 #define NPROC (16)
-
+#include "syscall_ids.h"
 
 // Saved registers for kernel context switches.
 struct context {
@@ -28,10 +28,10 @@ struct context {
 
 enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 enum TaskStatus {
-    TASK_UNUSED,
-    TASK_USED,
-    TASK_RUNNABLE,
-    TASK_RUNNING
+    TASK_UNINIT,
+    TASK_RUNABLE,
+    TASK_RUNNING,
+    TASK_EXITED
 };
 
 // Per-process state
@@ -44,10 +44,10 @@ struct proc {
 	struct context context; // swtch() here to run process
 	/*
 	* LAB1: you may need to add some new fields here
-	*/
-	enum TaskStatus status; // task status 
+	*/ // task status 
+	
 	unsigned int syscall_times[MAX_SYSCALL_NUM]; 
-    int total_runtime; 
+    uint64 total_runtime; 
 };
 
 /*
