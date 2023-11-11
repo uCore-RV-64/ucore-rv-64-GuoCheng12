@@ -11,11 +11,7 @@ uint64 get_cycle();
 void timer_init();
 void set_next_timer();
 
-<<<<<<< HEAD
-typedef struct {
-=======
 typedef struct { // How to process structures in VA?
->>>>>>> ch4
 	uint64 sec; // 自 Unix 纪元起的秒数
 	uint64 usec; // 微秒数
 } TimeVal;

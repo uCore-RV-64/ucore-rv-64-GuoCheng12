@@ -45,11 +45,7 @@ void kfree(void *pa)
 // Allocate one 4096-byte page of physical memory.
 // Returns a pointer that the kernel can use.
 // Returns 0 if the memory cannot be allocated.
-<<<<<<< HEAD
 void *kalloc()
-=======
-void *kalloc(void)
->>>>>>> ch4
 {
 	struct linklist *l;
 	l = kmem.freelist;

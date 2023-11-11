@@ -17,9 +17,6 @@
 #define MIN(a, b) (a < b ? a : b)
 #define MAX(a, b) (a > b ? a : b)
 
-<<<<<<< HEAD
 #define NULL ((void *)0)
 
-=======
->>>>>>> ch4
 #endif // DEF_H

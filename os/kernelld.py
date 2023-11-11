@@ -38,11 +38,7 @@ SECTIONS
         *(.data)
 ''')
     for (idx, _) in enumerate(apps):
-<<<<<<< HEAD
         f.write('        . = ALIGN(0x8);\n')
-=======
-        f.write('        . = ALIGN(0x1000);\n')
->>>>>>> ch4
         f.write('        *(.data.app{})\n'.format(idx))
     f.write(
 '''

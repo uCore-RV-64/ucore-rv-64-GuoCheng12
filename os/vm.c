@@ -8,11 +8,7 @@ extern char e_text[]; // kernel.ld sets this to end of kernel code.
 extern char trampoline[];
 
 // Make a direct-map page table for the kernel.
-<<<<<<< HEAD
 pagetable_t kvmmake()
-=======
-pagetable_t kvmmake(void)
->>>>>>> ch4
 {
 	pagetable_t kpgtbl;
 	kpgtbl = (pagetable_t)kalloc();
@@ -30,11 +26,7 @@ pagetable_t kvmmake(void)
 // Initialize the one kernel_pagetable
 // Switch h/w page table register to the kernel's page table,
 // and enable paging.
-<<<<<<< HEAD
 void kvm_init()
-=======
-void kvm_init(void)
->>>>>>> ch4
 {
 	kernel_pagetable = kvmmake();
 	w_satp(MAKE_SATP(kernel_pagetable));
@@ -125,15 +117,10 @@ int mappages(pagetable_t pagetable, uint64 va, uint64 size, uint64 pa, int perm)
 	a = PGROUNDDOWN(va);
 	last = PGROUNDDOWN(va + size - 1);
 	for (;;) {
-<<<<<<< HEAD
 		if ((pte = walk(pagetable, a, 1)) == 0) {
 			errorf("pte invalid, va = %p", a);
 			return -1;
 		}
-=======
-		if ((pte = walk(pagetable, a, 1)) == 0)
-			return -1;
->>>>>>> ch4
 		if (*pte & PTE_V) {
 			errorf("remap");
 			return -1;
@@ -175,11 +162,7 @@ void uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)
 
 // create an empty user page table.
 // returns 0 if out of memory.
-<<<<<<< HEAD
 pagetable_t uvmcreate(uint64 trapframe)
-=======
-pagetable_t uvmcreate()
->>>>>>> ch4
 {
 	pagetable_t pagetable;
 	pagetable = (pagetable_t)kalloc();
@@ -190,17 +173,11 @@ pagetable_t uvmcreate()
 	memset(pagetable, 0, PGSIZE);
 	if (mappages(pagetable, TRAMPOLINE, PAGE_SIZE, (uint64)trampoline,
 		     PTE_R | PTE_X) < 0) {
-<<<<<<< HEAD
 		panic("mappages fail");
 	}
 	if (mappages(pagetable, TRAPFRAME, PGSIZE, trapframe, PTE_R | PTE_W) <
 	    0) {
 		panic("mappages fail");
-=======
-		kfree(pagetable);
-		errorf("uvmcreate: mappages error");
-		return 0;
->>>>>>> ch4
 	}
 	return pagetable;
 }
@@ -236,7 +213,6 @@ void uvmfree(pagetable_t pagetable, uint64 max_page)
 	freewalk(pagetable);
 }
 
-<<<<<<< HEAD
 // Used in fork.
 // Copy the pagetable page and all the user pages.
 // Return 0 on success, -1 on error.
@@ -269,8 +245,6 @@ err:
 	return -1;
 }
 
-=======
->>>>>>> ch4
 // Copy from kernel to user.
 // Copy len bytes from src to virtual address dstva in a given page table.
 // Return 0 on success, -1 on error.
