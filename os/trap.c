@@ -15,18 +15,30 @@ void kerneltrap()
 }
 
 // set up to take exceptions and traps while in the kernel.
+<<<<<<< HEAD
 void set_usertrap()
+=======
+void set_usertrap(void)
+>>>>>>> ch4
 {
 	w_stvec(((uint64)TRAMPOLINE + (uservec - trampoline)) & ~0x3); // DIRECT
 }
 
+<<<<<<< HEAD
 void set_kerneltrap()
+=======
+void set_kerneltrap(void)
+>>>>>>> ch4
 {
 	w_stvec((uint64)kerneltrap & ~0x3); // DIRECT
 }
 
 // set up to take exceptions and traps while in the kernel.
+<<<<<<< HEAD
 void trap_init()
+=======
+void trap_init(void)
+>>>>>>> ch4
 {
 	// intr_on();
 	set_kerneltrap();

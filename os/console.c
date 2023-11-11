@@ -9,9 +9,12 @@ void consputc(int c)
 void console_init()
 {
 	// DO NOTHING
+<<<<<<< HEAD
 }
 
 int consgetc()
 {
 	return console_getchar();
+=======
+>>>>>>> ch4
 }
