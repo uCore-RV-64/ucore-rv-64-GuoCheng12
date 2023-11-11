@@ -2,7 +2,6 @@ import os
 
 TARGET_DIR = "./user/target/bin/"
 
-<<<<<<< HEAD
 import argparse
 
 if __name__ == '__main__':
@@ -10,9 +9,6 @@ if __name__ == '__main__':
     parser.add_argument('INIT_PROC', default="usershell")
     args = parser.parse_args()
 
-=======
-if __name__ == '__main__':
->>>>>>> ch4
     f = open("os/link_app.S", mode="w")
     apps = os.listdir(TARGET_DIR)
     apps.sort()
@@ -38,7 +34,6 @@ _app_names:
     for app in apps:
         f.write("   .string \"" + app + "\"\n")
 
-<<<<<<< HEAD
     f.write(
 '''
     .global INIT_PROC
@@ -46,8 +41,6 @@ INIT_PROC:
     .string \"{0}\"
 '''.format(args.INIT_PROC));
 
-=======
->>>>>>> ch4
     for (idx, app) in enumerate(apps):
         f.write(
 '''
